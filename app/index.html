@@ -10,14 +10,38 @@
 <body>
     <header>
         <div class="logo">
-            <img src="assets/images/pokedexIcon.png" alt="Logo pokebola">
+            <img src="assets/images/pokedexIcon.png" alt="Logo pokebola" class="imgIcon">
             <h1>Pokédex</h1>
         </div>
         <div class="seachBar">
-            <i class="fa-solid fa-magnifying-glass"></i>
-            <input type="text" name="textSearch" id="textSearch" placeholder="Search">
-            <button class="btnPesquisa" id="optionsForSearch" onclick="alert('Olá trouxa')">#</button>
+            <form action="">
+                <input type="number" name="valorDeBusca" id="valorDeBusca" min="0" step="1" onkeyup="search(valorDeBusca, infoSemResultadosBusca, listaPokemonRenderizada)" placeholder="Search" autocomplete="none">
+                <i class="fa-solid fa-magnifying-glass"></i>
+                <button type="reset" title="Apagar" id="btnResetPesquisa">
+                    <i class="fa-solid fa-xmark"></i>
+                </button>
+            </form>
+            <button class="btnPesquisa" id="btnParametroPesquisa" onclick="mudarFormaPesquisa()">#</button>
+            <button class="campoMenuPesquisa">
+                <h3>Sort by:</h3>
+                <ul class="menuPesquisa">
+                    <li class="opcaoPesquisa">
+                        <input type="radio" name="buscador" id="buscaPorId" checked>
+                        <label for="buscaPorId">Number</label>
+                    </li>
+                    <li class="opcaoPesquisa">
+                        <input type="radio" name="buscador" id="buscaPorNome">
+                        <label for="buscaPorNome">Name</label>
+                    </li>
+                </ul>
+            </button>
         </div>
     </header>
+    <div class="backgroundMenuPesquisa"></div>
+    <main class="container">
+        <ul class="lista"></ul>
+        <span class="infoSemResultadosBusca"></span>
+    </main>
+    <script src="assets/js/script.js"></script>
 </body>
 </html>

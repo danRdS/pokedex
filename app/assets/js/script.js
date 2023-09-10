@@ -17,6 +17,19 @@ async function requisitarPokemos() {
         const responsePokemons = await fetch('http://localhost:3000/pokemons');
         const listaPokemons = await responsePokemons.json();
         montaElementos(listaPokemons, listaPokemonRenderizada);
+
+        // Teste de clique nos li's
+        const elementosListaPokemonRenderizada = document.querySelectorAll('.lista li');        
+        elementosListaPokemonRenderizada.forEach(elemento => {
+            elemento.addEventListener('click', () => {
+                let filho = elemento.children;
+                for(let pokemon of filho){
+                    localStorage.nomePokemon = pokemon.lastElementChild.innerText;
+                    localStorage.idPokemon = pokemon.firstElementChild.innerText;
+                }
+            })
+        })
+
     } catch(err){
         console.log(err.message);
     }
@@ -53,7 +66,7 @@ const search = (inputPesquisaPokemon, mensagemSemResultadosDeBusca, listaPokemon
 function montaElementos(listaPokemons, listaPokemonRenderizada){
     const pokemons = listaPokemons.map(pokemon => {
         return `<li>
-                    <a href="#0" class="optionPokemon">
+                    <a href="#0" onclick="abrirDetalhesPokemon()" class="optionPokemon">
                         <span class="spanId">#${pokemon.id}</span> 
                         <img class="imgPokemon" src="${pokemon.urlImage}">
                         <p class="nomePokemon">${pokemon.nome}</p>
@@ -61,6 +74,12 @@ function montaElementos(listaPokemons, listaPokemonRenderizada){
                 </li>`
     })
     listaPokemonRenderizada.innerHTML = `${pokemons.join('')}`;
+}
+
+function abrirDetalhesPokemon(){
+    setTimeout(() => {
+        location.href = 'secondView/infosPokemon.html';
+    });
 }
 
 const btnResetPesquisa = document.getElementById('btnResetPesquisa');

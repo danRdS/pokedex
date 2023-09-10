@@ -1,4 +1,4 @@
-*{
+/* *{
     margin: 0;
     padding: 0;
     box-sizing: border-box;
@@ -10,16 +10,16 @@
 html{
     background-color: red;
     color: #e7e7e7;
-}
+} */
+
+@import url(resetCss.css);
 
 header{
     padding: .5rem 1rem 1.5rem;
     background-color: transparent;
-    background-color: darkred;
-    background-color: red;
+    background-color: #dc0a2d;
     display: flex;
     flex-direction: column;
-    /* position: relative; */
 }
 
 .logo{
@@ -27,6 +27,7 @@ header{
     align-items: center;
     justify-content: flex-start;
     cursor: default;
+    color: #fff;
 }
 
 .imgIcon{
@@ -202,7 +203,9 @@ header input[type=number]::-webkit-inner-spin-button{
 
 .lista li{
     /* background-color: darkcyan; */
-    /* width: 30%; */
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 
@@ -232,7 +235,8 @@ header input[type=number]::-webkit-inner-spin-button{
 
 .imgPokemon{
     width: 100%;
-    margin: -15px 0;
+    width: 70%;
+    /* margin: -15px 0; */
 }
 
 .nomePokemon{
@@ -245,4 +249,18 @@ header input[type=number]::-webkit-inner-spin-button{
     color: #181818;
     display: none;
     word-break: break-all;
+}
+
+
+@media screen and (min-width: 420px) {
+    .lista li{
+        width: 30%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+    .optionPokemon{
+        width: auto;
+        height: auto;
+    }
 }

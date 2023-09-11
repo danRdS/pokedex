@@ -13,7 +13,7 @@ fetch('http://localhost:3000/pokemons/')
             indexPokemonNaListaDoDB = indice;
             lista.innerHTML += 
                 `<li>
-                    <a href="../index.html" class="btnVoltarHome">
+                    <a href="../../index.html" class="btnVoltarHome">
                         <i class="fa-solid fa-arrow-left"></i>
                     </a>
                     <h2>${pokemon.nome}</h2>

@@ -69,7 +69,7 @@ function montaElementos(listaPokemons, listaPokemonRenderizada){
 
 function abrirDetalhesPokemon(){
     setTimeout(() => {
-        location.href = 'secondView/infosPokemon.html';
+        location.href = 'app/secondView/infosPokemon.html';
     });
 }
 

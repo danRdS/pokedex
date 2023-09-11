@@ -1,12 +1,3 @@
-// fetch('https://pokeapi.co/api/v2/pokemon/1')
-// .then(response => response.json())
-// .then(data => {
-//     console.log(data)
-//     console.log('ID:', data.id)
-//     console.log(`Nome: ${data.forms[0].name}`)
-// })
-
-// let urlImage = `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${id}.png`;
 const form = document.querySelector('form');
 form.addEventListener('submit', e => e.preventDefault());
 
@@ -47,7 +38,7 @@ const search = (inputPesquisaPokemon, mensagemSemResultadosDeBusca, listaPokemon
     let temResultadoBusca = false;
 
     elementosListaPokemonRenderizada.forEach(item => {
-        if(item.innerText.toLowerCase().includes(valorBuscaDigitadoPeloUsuario.toLowerCase())){
+        if(item.innerText.toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, '').includes(valorBuscaDigitadoPeloUsuario.toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, ''))){
             item.style.display = 'block';
             temResultadoBusca = true;
             listaPokemonRenderizada.style.display = 'flex';

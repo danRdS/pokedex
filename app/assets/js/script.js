@@ -11,6 +11,7 @@ const form = document.querySelector('form');
 form.addEventListener('submit', e => e.preventDefault());
 
 const container = document.querySelector('.container');
+const badRequest = document.getElementById('badRequest');
 
 async function requisitarPokemos() {
     try{
@@ -18,7 +19,6 @@ async function requisitarPokemos() {
         const listaPokemons = await responsePokemons.json();
         montaElementos(listaPokemons, listaPokemonRenderizada);
 
-        // Teste de clique nos li's
         const elementosListaPokemonRenderizada = document.querySelectorAll('.lista li');        
         elementosListaPokemonRenderizada.forEach(elemento => {
             elemento.addEventListener('click', () => {
@@ -31,7 +31,7 @@ async function requisitarPokemos() {
         })
 
     } catch(err){
-        console.log(err.message);
+        badRequest.innerText = `${err.message}`;
     }
 }
 
@@ -112,14 +112,24 @@ const buscaPorNome = document.getElementById('buscaPorNome');
 buscaPorId.addEventListener('click', () => mudarValorBotaoPesquisa(inputPesquisaPokemon));
 buscaPorNome.addEventListener('click', () => mudarValorBotaoPesquisa(inputPesquisaPokemon));
 
+window.onload = () => {
+    let indicadorBtnParametroPesquisa = localStorage.indicadorBtnParametroPesquisa;
+    if(indicadorBtnParametroPesquisa == 'A'){
+        buscaPorNome.checked = true;
+        mudarValorBotaoPesquisa(inputPesquisaPokemon);
+    }
+}
+
 function mudarValorBotaoPesquisa(inputPesquisaPokemon){
     if(buscaPorNome.checked){
+        localStorage.indicadorBtnParametroPesquisa = 'A';
         btnParametroPesquisa.innerText = 'A';
         btnParametroPesquisa.style.textDecoration = 'underline';
         inputPesquisaPokemon.setAttribute('type', 'text');
         inputPesquisaPokemon.setAttribute('onkeypress', "if (isNaN(String.fromCharCode(window.event.keyCode))) return true; else return false;")
     } else {
         btnParametroPesquisa.innerText = '#';
+        localStorage.indicadorBtnParametroPesquisa = '#';
         btnParametroPesquisa.style.textDecoration = 'none';
         inputPesquisaPokemon.setAttribute('type', 'number');
         inputPesquisaPokemon.removeAttribute('onkeypress');
